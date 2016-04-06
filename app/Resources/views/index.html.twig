@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="ru">
+    <meta charset="UTF-8">
+    <title>Товары</title>
+</head>
+<body style="margin: 5%">
+<link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+Пожалуйста, снача выберите тип цены: <div class="btn-group">
+    <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Выбор типа цены <span class="caret"></span></button>
+    <ul class="dropdown-menu" role="menu">
+        <li><a href="?type=1">Цена 1</a></li>
+        <li><a href="?type=2">Цена 2</a></li>
+    </ul>
+</div>
+{% if(product is not empty) %}
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th>Название товара</th>
+        <th>Цена на товар (тип цены {{ type }})</th>
+        <th>Список фото</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in product %}
+    <tr>
+        <td>{{ item.title }}</td>
+        <td>{{ item.price }}</td>
+        <td>{{ dump(item.basename) }}</td>
+    </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+<script src="//code.jquery.com/jquery-2.2.3.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+</body>
+</html>

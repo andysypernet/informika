@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://doctrine-project.org/schemas/orm/doctrine-mapping http://doctrine-project.org/schemas/orm/doctrine-mapping.xsd">
+  <entity name="AppBundle\Entity\Prices" table="Prices" repository-class="AppBundle\Repository\GoodsRepository">
+    <indexes>
+      <index name="Good" columns="goods_id"/>
+    </indexes>
+    <unique-constraints>
+      <unique-constraint name="uniq" columns="price_type_id,goods_id"/>
+    </unique-constraints>
+    <id name="id" type="integer" column="id">
+      <generator strategy="IDENTITY"/>
+    </id>
+    <field name="priceTypeId" type="integer" column="price_type_id" nullable="false"/>
+    <field name="price" type="decimal" column="price" precision="5" scale="2" nullable="false"/>
+    <many-to-one field="goods" target-entity="Goods">
+      <join-columns>
+        <join-column name="goods_id" referenced-column-name="id"/>
+      </join-columns>
+    </many-to-one>
+  </entity>
+</doctrine-mapping>
